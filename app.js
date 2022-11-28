@@ -13,18 +13,8 @@ class Book {
 class Library{
 
     static display() {
-        const StoredBooks = [
-            {
-                title: 'Book one',
-                author: 'author1'
-            },
-            {
-                title: 'Book two',
-                author: 'author2'
-            }
-        ];
 
-        const books = StoredBooks;
+        const books = BooksLocalStorage.getStorage();
 
         books.forEach((book) => Library.addBook(book));
 
@@ -52,11 +42,33 @@ class Library{
     }
 
 
-     // static clearFields() {
-       //  document.querySelector('#title').value = '';
-        // document.querySelector('#author').value = '';
-     //}
+     static clearFields() {
+       document.querySelector('#title').value = '';
+        document.querySelector('#author').value = '';
+    }
 
+
+}
+
+
+class BooksLocalStorage {
+
+    static getStorage(){
+        let books;
+        if(localStorage.getItem('books') === null){
+            books = [];
+        }
+        else{
+            books = JSON.parse(localStorage.getItem('books'));
+        }
+        return books;
+}
+
+    static addBookStorage(book){
+        const books = BooksLocalStorage.getStorage();
+        books.push(book)
+        localStorage.setItem('books',JSON.stringify(books));
+    }
 
 }
 
@@ -83,3 +95,5 @@ document.querySelector('.book-form').addEventListener('submit',(e) => {
 document.querySelector('#bookList').addEventListener('click', (e) => {
     Library.delete(e.target)
 });
+
+
