@@ -31,22 +31,31 @@ class Library{
     }
 
     static addBook(book) {
-        const list = document.getElementById('bookList')
+        const list = document.querySelector('.bookList');
 
         const container = document.createElement('div');
         container.innerHTML = `
             <p>${book.title}</p>
             <p>${book.author}</p>
-            <button>Remove</button>
+            <button class="delete">Remove</button>
+            <hr>
+        
         `;
 
         list.appendChild(container);
     }
 
-    // static clearFields() {
-    //     document.querySelector('#title').value = '';
-    //     document.querySelector('#author').value = '';
-    // }
+    static delete(dl) {
+        if(dl.clasList.contains('delete')) {
+            dl.parentElement.parentElement.remove();
+        }
+    }
+
+
+     static clearFields() {
+         document.querySelector('#title').value = '';
+         document.querySelector('#author').value = '';
+     }
 
 
 }
@@ -56,9 +65,21 @@ class Library{
 document.addEventListener('DOMContentLoaded', Library.display);
 
 // add a book
-//document.querySelector("book-form").addEventListener('click',(e) => {
+document.querySelector('#book-form').addEventListener('submit',(e) => {
     e.preventDefault();
 
-    //const title = document.querySelector('#title').value;
-    //const author = document.querySelector('#author').value;
-//})
+    const title = document.querySelector('#title').value;
+    const author = document.querySelector('#author').value;
+
+    const book = new Book(title, author);
+
+    Library.addBook(book);
+
+    Library.clearFields();
+
+});
+
+// remove a book
+document.querySelector('bookList').addEventListener('click', (e) => {
+    Library.delete(e.target)
+});
