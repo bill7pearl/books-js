@@ -62,7 +62,7 @@ class BooksLocalStorage {
             books = JSON.parse(localStorage.getItem('books'));
         }
         return books;
-}
+     }
 
     static addBookStorage(book){
         const books = BooksLocalStorage.getStorage();
@@ -86,7 +86,7 @@ document.querySelector('.book-form').addEventListener('submit',(e) => {
     const book = new Book(title, author);
 
     Library.addBook(book);
-
+    BooksLocalStorage.addBookStorage();
     Library.clearFields();
 
 });
@@ -95,5 +95,7 @@ document.querySelector('.book-form').addEventListener('submit',(e) => {
 document.querySelector('#bookList').addEventListener('click', (e) => {
     Library.delete(e.target)
 });
+
+
 
 
