@@ -61,6 +61,7 @@ A pair programming project that heighlights the use of plain Javascript.
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/billal-chami-263497194/)
 ### 👤 Salwa Ballouti:
 - GitHub: [@Salwa99](https://github.com/Salwa99)
+- Twitter: [@SalwaBallouti](https://twitter.com/salwa_ballouti)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/salwa-ballouti-096358251/)
 
 # 🔭 Future Features:
