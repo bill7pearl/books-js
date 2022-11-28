@@ -37,8 +37,7 @@ class Library{
         container.innerHTML = `
             <p>${book.title}</p>
             <p>${book.author}</p>
-            <butthon>Remove</butthon>
-        
+            <button>Remove</button>
         `;
 
         list.appendChild(container);
@@ -54,9 +53,12 @@ class Library{
 
 
 //Display books
-doocument.addEventListner('DOMContentLoaded', Library.display);
+document.addEventListener('DOMContentLoaded', Library.display);
 
 // add a book
-document.querySelector('#book-form').addEventListener('click',(e) => {
-    console.log()
-})
+//document.querySelector("book-form").addEventListener('click',(e) => {
+    e.preventDefault();
+
+    //const title = document.querySelector('#title').value;
+    //const author = document.querySelector('#author').value;
+//})
