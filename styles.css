@@ -1,16 +1,16 @@
-body{
-    padding: 5% 25%;
+body {
+  padding: 5% 25%;
 }
 
-form{
-    display: flex;
-    flex-direction: column;
+form {
+  display: flex;
+  flex-direction: column;
 }
 
-form input{
-    margin: 3% 0;
+form input {
+  margin: 3% 0;
 }
 
-form button{
-    width: 35%;
+form button {
+  width: 35%;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 const MainData = document.querySelector('#bookList');
 /* eslint-disable no-unused-vars */
 const Title = document.querySelector('#title');
