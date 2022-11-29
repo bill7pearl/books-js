@@ -23,13 +23,13 @@ class Library{
    static addBook(book) {
        const list = document.querySelector('#bookList');
 
-       const container = document.createElement('div');
+       const container = document.createElement('table');
        container.innerHTML = `
-           <p>${book.title}</p>
-           <p>${book.author}</p>
-           <button class="delete">Remove</button>
-           <hr>
-       
+       <tr>
+           <td>${book.title}</td>
+           <td>${book.author}</td>
+           <td><button class="delete">Remove</button></td>
+       </tr>
        `;
 
        list.appendChild(container);
@@ -37,7 +37,7 @@ class Library{
 
    static delete(dl) {
        if(dl.classList.contains('delete')) {
-           dl.parentElement.remove();
+           dl.parentElement.parentElement.remove();
        }
    }
 
@@ -62,7 +62,7 @@ class BooksLocalStorage {
            books = JSON.parse(localStorage.getItem('books'));
        }
        return books;
-    }
+}
 
    static addBookStorage(book){
        const books = BooksLocalStorage.getStorage();
@@ -86,7 +86,7 @@ document.querySelector('.book-form').addEventListener('submit',(e) => {
    const book = new Book(title, author);
 
    Library.addBook(book);
-   BooksLocalStorage.addBookStorage();
+
    Library.clearFields();
 
 });
@@ -95,7 +95,4 @@ document.querySelector('.book-form').addEventListener('submit',(e) => {
 document.querySelector('#bookList').addEventListener('click', (e) => {
    Library.delete(e.target)
 });
-
-
-
 
