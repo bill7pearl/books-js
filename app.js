@@ -1,23 +1,15 @@
+
 class Book {
   constructor(title, author, id){
+   this.id = id;
    this.title = title;
    this.author = author;
-   this.id = id;
-
   }
 }
-class Library{
+class Library {
 
    static display() {
-      let books;
-      if(localStorage.getItem('books')) {
-
-          books = JSON.parse(localStorage.getItem('books'))
-      } else {
-          books = []
-      }
-
-
+       const books = BooksLocalStorage.getBookStorage();
        books.forEach((book) => Library.addBook(book));
 
    }
@@ -25,13 +17,12 @@ class Library{
    static addBook(book) {
        const list = document.querySelector('#bookList');
 
-       const container = document.createElement('table');
+       const container = document.createElement('tr');
        container.innerHTML = `
-       <tr>
            <td>${book.title}</td>
            <td>${book.author}</td>
+           <td id="hide">${book.id}</td>
            <td><button class="delete">Remove</button></td>
-       </tr>
        `;
 
        list.appendChild(container);
@@ -60,7 +51,7 @@ class BooksLocalStorage {
        if(localStorage.getItem('books') === null){
            books = [];
        }
-       else{
+       else {
            books = JSON.parse(localStorage.getItem('books'));
        }
        return books;
@@ -88,24 +79,28 @@ class BooksLocalStorage {
 //Display books
 document.addEventListener('DOMContentLoaded', Library.display);
 
+
 // add a book
 document.querySelector('.book-form').addEventListener('submit',(e) => {
    e.preventDefault();
-
+   
    const title = document.querySelector('#title').value;
    const author = document.querySelector('#author').value;
+   const generateId = () => Date.now().toString(36) + Math.random().toString(36).substring(2);
 
-   const book = new Book(title, author);
+
+
+   const book = new Book(title, author, generateId());
 
    Library.addBook(book);
    BooksLocalStorage.addBookStorage(book);
    Library.clearFields();
-
+   
 
 });
 
 // remove a book
 document.querySelector('#bookList').addEventListener('click', (e) => {
    Library.delete(e.target)
-   //BooksLocalStorage.removeBookStorage(e.target.parentElement.previousElementSibling.textContent);
+   BooksLocalStorage.removeBookStorage(e.target.parentElement.previousElementSibling.textContent);
 });

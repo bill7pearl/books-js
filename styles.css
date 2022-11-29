@@ -14,3 +14,7 @@ form input {
 form button {
   width: 35%;
 }
+
+#hide {
+  display: none;
+}
