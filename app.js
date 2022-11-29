@@ -1,20 +1,22 @@
-// const addBook = document.querySelector('.book-list');
-
 class Book {
-
-  constructor(title, author){
-
+  constructor(title, author, id){
    this.title = title;
    this.author = author;
+   this.id = id;
 
-  } 
+  }
 }
-
 class Library{
 
    static display() {
+      let books;
+      if(localStorage.getItem('books')) {
 
-       const books = BooksLocalStorage.getStorage();
+          books = JSON.parse(localStorage.getItem('books'))
+      } else {
+          books = []
+      }
+
 
        books.forEach((book) => Library.addBook(book));
 
@@ -53,7 +55,7 @@ class Library{
 
 class BooksLocalStorage {
 
-   static getStorage(){
+   static getBookStorage(){
        let books;
        if(localStorage.getItem('books') === null){
            books = [];
@@ -65,9 +67,19 @@ class BooksLocalStorage {
 }
 
    static addBookStorage(book){
-       const books = BooksLocalStorage.getStorage();
-       books.push(book)
+       const books = BooksLocalStorage.getBookStorage();
+       books.push(book);
        localStorage.setItem('books',JSON.stringify(books));
+   }
+
+   static removeBookStorage(id) {
+      const books = BooksLocalStorage.getBookStorage();
+      books.forEach((book, index) => {
+        if(book.id === id)
+        books.splice(index, 1);
+      })
+
+      localStorage.setItem('books', JSON.stringify(books));
    }
 
 }
@@ -86,13 +98,14 @@ document.querySelector('.book-form').addEventListener('submit',(e) => {
    const book = new Book(title, author);
 
    Library.addBook(book);
-
+   BooksLocalStorage.addBookStorage(book);
    Library.clearFields();
+
 
 });
 
 // remove a book
 document.querySelector('#bookList').addEventListener('click', (e) => {
    Library.delete(e.target)
+   //BooksLocalStorage.removeBookStorage(e.target.parentElement.previousElementSibling.textContent);
 });
-
