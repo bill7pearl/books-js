@@ -1,20 +1,69 @@
-body {
-  padding: 5% 25%;
+* {
+  box-sizing: border-box;
+}
+
+table {
+  width: 50%;
+  margin: auto;
+  border-collapse: collapse;
+  border: 2px solid black;
+}
+
+tr:nth-child(odd) {
+  background: rgb(221, 217, 217);
+}
+
+td {
+  width: 10%;
+  padding: 10px;
+  word-spacing: 5px;
+}
+
+h2,
+h1 {
+  text-align: center;
+  margin-bottom: 5%;
+  font-size: 2.3rem;
+  color: rgb(42, 45, 70);
 }
 
 form {
-  display: flex;
+  margin: auto;
   flex-direction: column;
+  width: 30%;
+  align-items: center;
 }
 
 form input {
-  margin: 3% 0;
+  width: 80%;
+  margin-bottom: 15px;
+  box-shadow: 1px 2px rgb(0, 0, 0);
 }
 
-form button {
-  width: 35%;
+#submit {
+  width: 20%;
+  padding: 5px;
+  cursor: pointer;
+  background: rgb(32, 107, 3);
+  color: bisque;
+}
+
+.delete {
+  box-shadow: 5px 6px rgb(56, 53, 53);
+  margin-bottom: 10px;
+  cursor: pointer;
+  background: rgb(255, 0, 0);
+  color: bisque;
+}
+
+#caseDelete {
+  width: 1%;
 }
 
 #hide {
   display: none;
+}
+
+hr {
+  margin-top: 15%;
 }
