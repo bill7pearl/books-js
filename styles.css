@@ -22,11 +22,11 @@
 }
 
 .nav-items {
- text-decoration: none;
- color: black;
- align-self: center;
- padding-top: 5px;
- height: 30px;
+  text-decoration: none;
+  color: black;
+  align-self: center;
+  padding-top: 5px;
+  height: 30px;
 }
 
 .border-right {
@@ -101,6 +101,7 @@ form input {
   flex-direction: column;
   align-items: center;
 }
+
 footer {
   display: flex;
   align-items: center;
