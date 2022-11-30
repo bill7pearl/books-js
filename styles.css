@@ -96,10 +96,11 @@ form input {
   display: none;
 }
 
-hr {
-  margin-top: 15%;
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
 footer {
   display: flex;
   align-items: center;
@@ -108,4 +109,10 @@ footer {
   padding: 0 20px;
   height: 40px;
   border: 2px solid red;
+  position: absolute;
+  bottom: 0;
+}
+
+.allhidden {
+  display: none;
 }
