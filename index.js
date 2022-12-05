@@ -1,69 +1,8 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable max-classes-per-file */
-class Book {
-  constructor(title, author, id) {
-    this.id = id;
-    this.title = title;
-    this.author = author;
-  }
-}
-class Library {
-  static display() {
-    const books = BooksLocalStorage.getBookStorage();
-    books.forEach((book) => Library.addBook(book));
-  }
 
-  static addBook(book) {
-    const list = document.querySelector('#bookList');
-
-    const container = document.createElement('tr');
-    container.innerHTML = `
-           <td>"${book.title}" by ${book.author}</td>
-           <td id="hide">${book.id}</td>
-           <td id="caseDelete"><button class="delete">Remove</button></td>
-       `;
-
-    list.appendChild(container);
-  }
-
-  static delete(dl) {
-    if (dl.classList.contains('delete')) {
-      dl.parentElement.parentElement.remove();
-    }
-  }
-
-  static clearFields() {
-    document.querySelector('#title').value = '';
-    document.querySelector('#author').value = '';
-  }
-}
-
-class BooksLocalStorage {
-  static getBookStorage() {
-    let books;
-    if (localStorage.getItem('books') === null) {
-      books = [];
-    } else {
-      books = JSON.parse(localStorage.getItem('books'));
-    }
-    return books;
-  }
-
-  static addBookStorage(book) {
-    const books = BooksLocalStorage.getBookStorage();
-    books.push(book);
-    localStorage.setItem('books', JSON.stringify(books));
-  }
-
-  static removeBookStorage(id) {
-    const books = BooksLocalStorage.getBookStorage();
-    books.forEach((book, index) => {
-      if (book.id === id) books.splice(index, 1);
-    });
-
-    localStorage.setItem('books', JSON.stringify(books));
-  }
-}
+import Book from './modules/books-constructor.js';
+import { Library, BooksLocalStorage } from './modules/display-books.js';
 
 // Display books
 document.addEventListener('DOMContentLoaded', Library.display);
@@ -126,3 +65,6 @@ hideContact.addEventListener('click', (e) => {
   hidden3.style.display = 'flex';
   e.preventDefault();
 });
+
+const date = luxon.DateTime.now(); //eslint-disable-line
+document.getElementById('luxon-date').innerText = date.toLocaleString(luxon.DateTime.DATETIME_MED); //eslint-disable-line
