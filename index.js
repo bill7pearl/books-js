@@ -1,5 +1,6 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable max-classes-per-file */
+
 import Book from './modules/books-constructor.js';
 import { Library, BooksLocalStorage } from './modules/display-books.js';
 
@@ -64,3 +65,6 @@ hideContact.addEventListener('click', (e) => {
   hidden3.style.display = 'flex';
   e.preventDefault();
 });
+
+const date = luxon.DateTime.now(); //eslint-disable-line
+document.getElementById('luxon-date').innerText = date.toLocaleString(luxon.DateTime.DATETIME_MED); //eslint-disable-line
